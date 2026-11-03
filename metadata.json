@@ -1,0 +1,6 @@
+{
+  "name": "EEC Financial Management — الإدارة المالية",
+  "description": "Enterprise Financial Management Dashboard for Egyptian Engineering Company (EEC) with bilingual Arabic/English support, dark/light themes, Redux Toolkit state synchronization, and localStorage persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', 'Cairo', system-ui, -apple-system, sans-serif;
+    --font-arabic: 'Cairo', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  [dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.45);
+}
+
+/* Custom react-grid-layout workspace styling */
+.react-grid-layout {
+  position: relative;
+  transition: height 180ms ease;
+}
+
+.react-grid-item {
+  transition: all 180ms ease;
+  transition-property: left, top, width, height;
+}
+
+.react-grid-item.cssTransforms {
+  transition-property: transform, width, height;
+}
+
+.react-grid-item.resizing {
+  z-index: 30;
+  will-change: width, height;
+}
+
+.react-grid-item.react-draggable-dragging {
+  transition: none;
+  z-index: 40;
+  will-change: transform;
+  box-shadow: 0 18px 38px rgba(59, 37, 110, 0.22);
+}
+
+.react-grid-item.react-grid-placeholder {
+  background: rgba(91, 52, 166, 0.14) !important;
+  border: 2px dashed #7c3aed !important;
+  border-radius: 1rem !important;
+  opacity: 0.9 !important;
+  transition-duration: 100ms;
+  z-index: 10;
+}
+
+.dark .react-grid-item.react-grid-placeholder {
+  background: rgba(168, 85, 247, 0.18) !important;
+  border-color: #c084fc !important;
+}
+
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  bottom: 2px;
+  right: 2px;
+  cursor: se-resize;
+  z-index: 25;
+  opacity: 0.45;
+  transition: opacity 150ms ease;
+}
+
+.react-grid-item:hover > .react-resizable-handle {
+  opacity: 1;
+}
+
+.react-grid-item > .react-resizable-handle::after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 8px;
+  height: 8px;
+  border-right: 2.5px solid #6d28d9;
+  border-bottom: 2.5px solid #6d28d9;
+  border-radius: 1px;
+}
+
+.dark .react-grid-item > .react-resizable-handle::after {
+  border-right-color: #c084fc;
+  border-bottom-color: #c084fc;
+}
+
+/* Printer-friendly layout formatting for window.print() and Print View mode */
+@media print {
+  @page {
+    size: landscape;
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt;
+    overflow: visible !important;
+    height: auto !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide navigation, decorative skyline, interactive toolbars, and modals */
+  .no-print,
+  aside,
+  nav {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* Expand scrollable containers for full print output */
+  main,
+  .print-expand {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* Format dashboard cards cleanly for paper */
+  .print-card {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
